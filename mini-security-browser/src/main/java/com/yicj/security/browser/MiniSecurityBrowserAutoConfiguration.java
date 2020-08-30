@@ -1,5 +1,6 @@
 package com.yicj.security.browser;
 
+import com.yicj.security.browser.config.BrowserSecurityConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
