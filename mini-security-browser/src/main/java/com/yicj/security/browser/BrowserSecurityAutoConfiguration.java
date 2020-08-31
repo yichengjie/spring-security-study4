@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Import({BrowserSecurityConfig.class})
-@ComponentScan("com.yicj.security.browser")
+@ComponentScan("com.yicj.security")
 public class BrowserSecurityAutoConfiguration {
 
 

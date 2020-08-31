@@ -1,5 +1,6 @@
 package com.yicj.security.demo.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class IndexController {
+
+    private ObjectMapper objectMapper ;
 
     @GetMapping("/")
     public String index(){
