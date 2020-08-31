@@ -40,7 +40,7 @@ public class BrowserProperties {
      *
      * 只在signInResponseType为REDIRECT时生效
      */
-    private String singInSuccessUrl;
+    private String singInSuccessUrl = "/yicj-index.html";
 
     /**
      * '记住我'功能的有效时间，默认1小时
