@@ -1,7 +1,5 @@
 package com.yicj.security.browser;
 
-import com.yicj.security.browser.config.BrowserSecurityConfig;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -14,7 +12,6 @@ import org.springframework.context.annotation.Import;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Import(BrowserSecurityConfig.class)
-@Configuration
 public class MiniSecurityBrowserAutoConfiguration {
 
 

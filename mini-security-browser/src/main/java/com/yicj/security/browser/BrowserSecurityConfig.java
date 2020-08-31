@@ -18,7 +18,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin() // 用表单登录来进行身份认证
+        http.httpBasic() // 用表单登录来进行身份认证
                 .and()
             .authorizeRequests() // 下面都是授权得配置
                 .anyRequest() // 任何请求
