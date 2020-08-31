@@ -1,6 +1,7 @@
 package com.yicj.security.browser.config;
 
 import com.yicj.security.core.authentication.FormAuthenticationConfig;
+import com.yicj.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.yicj.security.core.authorize.AuthorizeConfigManager;
 import com.yicj.security.core.properties.SecurityProperties;
 import com.yicj.security.core.validate.ValidateCodeSecurityConfig;
@@ -46,12 +47,17 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
 
+    @Autowired
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig ;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录相关配置
         formAuthenticationConfig.configure(http);
         // 验证码相关配置
         http.apply(validateCodeSecurityConfig) ;
+        // 手机验证码配置
+        http.apply(smsCodeAuthenticationSecurityConfig) ;
 
         http.sessionManagement()
             .invalidSessionStrategy(invalidSessionStrategy)
