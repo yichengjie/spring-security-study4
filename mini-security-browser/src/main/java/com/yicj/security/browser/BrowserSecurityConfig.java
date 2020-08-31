@@ -1,4 +1,4 @@
-package com.yicj.security.browser.config;
+package com.yicj.security.browser;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
