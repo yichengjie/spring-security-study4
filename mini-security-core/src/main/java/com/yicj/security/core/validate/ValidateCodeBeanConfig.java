@@ -1,10 +1,10 @@
-package com.yicj.security.core.validate.code;
+package com.yicj.security.core.validate;
 
 import com.yicj.security.core.properties.SecurityProperties;
-import com.yicj.security.core.validate.code.generator.ValidateCodeGenerator;
-import com.yicj.security.core.validate.code.generator.impl.ImageCodeGenerator;
-import com.yicj.security.core.validate.code.sender.SmsCodeSender;
-import com.yicj.security.core.validate.code.sender.impl.DefaultSmsCodeSender;
+import com.yicj.security.core.validate.code.ValidateCodeGenerator;
+import com.yicj.security.core.validate.code.impl.ImageCodeGenerator;
+import com.yicj.security.core.validate.code.SmsCodeSender;
+import com.yicj.security.core.validate.code.impl.DefaultSmsCodeSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ValidateCodeBeanConfig {
+
     @Autowired
     private SecurityProperties securityProperties;
 

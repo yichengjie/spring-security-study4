@@ -1,5 +1,6 @@
-package com.yicj.security.core.validate.code;
+package com.yicj.security.core.validate;
 
+import com.yicj.security.core.validate.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

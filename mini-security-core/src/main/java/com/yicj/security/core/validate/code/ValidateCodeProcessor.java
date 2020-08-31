@@ -1,4 +1,4 @@
-package com.yicj.security.core.validate.code.processor;
+package com.yicj.security.core.validate.code;
 
 import org.springframework.web.context.request.ServletWebRequest;
 

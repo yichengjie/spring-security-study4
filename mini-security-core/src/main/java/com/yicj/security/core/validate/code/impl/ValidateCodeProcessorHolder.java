@@ -1,7 +1,8 @@
-package com.yicj.security.core.validate.code.processor;
+package com.yicj.security.core.validate.code.impl;
 
-import com.yicj.security.core.validate.code.exception.ValidateCodeException;
-import com.yicj.security.core.validate.code.model.ValidateCodeType;
+import com.yicj.security.core.validate.code.ValidateCodeProcessor;
+import com.yicj.security.core.validate.exception.ValidateCodeException;
+import com.yicj.security.core.validate.model.ValidateCodeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

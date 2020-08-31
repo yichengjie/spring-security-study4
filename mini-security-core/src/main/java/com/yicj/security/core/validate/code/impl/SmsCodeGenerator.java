@@ -1,8 +1,8 @@
-package com.yicj.security.core.validate.code.generator.impl;
+package com.yicj.security.core.validate.code.impl;
 
 import com.yicj.security.core.properties.SecurityProperties;
-import com.yicj.security.core.validate.code.model.ValidateCode;
-import com.yicj.security.core.validate.code.generator.ValidateCodeGenerator;
+import com.yicj.security.core.validate.model.ValidateCode;
+import com.yicj.security.core.validate.code.ValidateCodeGenerator;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

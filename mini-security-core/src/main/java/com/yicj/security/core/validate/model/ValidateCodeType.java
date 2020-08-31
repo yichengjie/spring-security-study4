@@ -1,4 +1,4 @@
-package com.yicj.security.core.validate.code.model;
+package com.yicj.security.core.validate.model;
 
 import com.yicj.security.core.properties.SecurityConstants;
 

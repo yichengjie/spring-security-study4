@@ -3,7 +3,7 @@ package com.yicj.security.browser.config;
 import com.yicj.security.core.authentication.FormAuthenticationConfig;
 import com.yicj.security.core.authorize.AuthorizeConfigManager;
 import com.yicj.security.core.properties.SecurityProperties;
-import com.yicj.security.core.validate.code.ValidateCodeSecurityConfig;
+import com.yicj.security.core.validate.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

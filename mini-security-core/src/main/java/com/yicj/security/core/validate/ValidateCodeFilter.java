@@ -1,10 +1,10 @@
-package com.yicj.security.core.validate.code;
+package com.yicj.security.core.validate;
 
 import com.yicj.security.core.properties.SecurityConstants;
 import com.yicj.security.core.properties.SecurityProperties;
-import com.yicj.security.core.validate.code.exception.ValidateCodeException;
-import com.yicj.security.core.validate.code.model.ValidateCodeType;
-import com.yicj.security.core.validate.code.processor.ValidateCodeProcessorHolder;
+import com.yicj.security.core.validate.code.impl.ValidateCodeProcessorHolder;
+import com.yicj.security.core.validate.exception.ValidateCodeException;
+import com.yicj.security.core.validate.model.ValidateCodeType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

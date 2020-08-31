@@ -1,11 +1,11 @@
-package com.yicj.security.core.validate.code.processor.impl;
+package com.yicj.security.core.validate.code.impl;
 
-import com.yicj.security.core.validate.code.generator.ValidateCodeGenerator;
-import com.yicj.security.core.validate.code.processor.ValidateCodeProcessor;
-import com.yicj.security.core.validate.code.model.ValidateCode;
-import com.yicj.security.core.validate.code.exception.ValidateCodeException;
-import com.yicj.security.core.validate.code.model.ValidateCodeType;
-import com.yicj.security.core.validate.code.repo.ValidateCodeRepository;
+import com.yicj.security.core.validate.code.ValidateCodeGenerator;
+import com.yicj.security.core.validate.code.ValidateCodeProcessor;
+import com.yicj.security.core.validate.code.ValidateCodeRepository;
+import com.yicj.security.core.validate.model.ValidateCode;
+import com.yicj.security.core.validate.exception.ValidateCodeException;
+import com.yicj.security.core.validate.model.ValidateCodeType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestBindingException;

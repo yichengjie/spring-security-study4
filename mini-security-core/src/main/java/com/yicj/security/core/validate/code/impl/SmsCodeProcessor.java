@@ -1,8 +1,8 @@
-package com.yicj.security.core.validate.code.processor.impl;
+package com.yicj.security.core.validate.code.impl;
 
 import com.yicj.security.core.properties.SecurityConstants;
-import com.yicj.security.core.validate.code.model.ValidateCode;
-import com.yicj.security.core.validate.code.sender.SmsCodeSender;
+import com.yicj.security.core.validate.model.ValidateCode;
+import com.yicj.security.core.validate.code.SmsCodeSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestUtils;

@@ -1,4 +1,4 @@
-package com.yicj.security.core.validate.code.exception;
+package com.yicj.security.core.validate.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

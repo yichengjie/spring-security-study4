@@ -1,4 +1,4 @@
-package com.yicj.security.core.validate.code.sender;
+package com.yicj.security.core.validate.code;
 
 public interface SmsCodeSender {
 

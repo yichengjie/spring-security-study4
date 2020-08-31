@@ -1,6 +1,6 @@
-package com.yicj.security.core.validate.code.generator;
+package com.yicj.security.core.validate.code;
 
-import com.yicj.security.core.validate.code.model.ValidateCode;
+import com.yicj.security.core.validate.model.ValidateCode;
 import org.springframework.web.context.request.ServletWebRequest;
 
 /**

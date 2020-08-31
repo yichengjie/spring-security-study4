@@ -1,8 +1,8 @@
-package com.yicj.security.core.validate.code.controller;
+package com.yicj.security.core.validate.controller;
 
 import com.yicj.security.core.properties.SecurityConstants;
-import com.yicj.security.core.validate.code.processor.ValidateCodeProcessor;
-import com.yicj.security.core.validate.code.processor.ValidateCodeProcessorHolder;
+import com.yicj.security.core.validate.code.ValidateCodeProcessor;
+import com.yicj.security.core.validate.code.impl.ValidateCodeProcessorHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

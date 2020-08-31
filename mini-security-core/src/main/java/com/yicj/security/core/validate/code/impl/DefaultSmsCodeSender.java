@@ -1,6 +1,6 @@
-package com.yicj.security.core.validate.code.sender.impl;
+package com.yicj.security.core.validate.code.impl;
 
-import com.yicj.security.core.validate.code.sender.SmsCodeSender;
+import com.yicj.security.core.validate.code.SmsCodeSender;
 import lombok.extern.slf4j.Slf4j;
 
 /**

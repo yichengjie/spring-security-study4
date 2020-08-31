@@ -1,6 +1,6 @@
-package com.yicj.security.core.validate.code.processor.impl;
+package com.yicj.security.core.validate.code.impl;
 
-import com.yicj.security.core.validate.code.model.ImageCode;
+import com.yicj.security.core.validate.model.ImageCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
