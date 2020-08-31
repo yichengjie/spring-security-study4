@@ -21,9 +21,5 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableConfigurationProperties(SecurityProperties.class)
 public class SecurityCoreConfig {
 
-    @Bean
-    @ConditionalOnMissingBean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance() ;
-    }
+
 }
