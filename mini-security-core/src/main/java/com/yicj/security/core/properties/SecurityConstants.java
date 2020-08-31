@@ -63,6 +63,11 @@ public interface SecurityConstants {
      * session失效默认的跳转地址
      */
     String DEFAULT_SESSION_INVALID_URL = "/yicj-session-invalid.html";
+
+    /**
+     * 默认退出登录地址
+     */
+    String DEFAULT_LOGOUT_URL = "/logout" ;
     /**
      * 获取第三方用户信息的url
      */
