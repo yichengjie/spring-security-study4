@@ -1,6 +1,7 @@
 package com.yicj.security.browser.config;
 
 import com.yicj.security.core.authentication.FormAuthenticationConfig;
+import com.yicj.security.core.authorize.AuthorizeConfigManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,18 +22,16 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private FormAuthenticationConfig formAuthenticationConfig ;
 
+    @Autowired
+    private AuthorizeConfigManager authorizeConfigManager;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录相关配置
         formAuthenticationConfig.configure(http);
-        // 授权相关配置
-        http.authorizeRequests() // 下面都是授权得配置
-                .anyRequest() // 任何请求
-                .authenticated()  // 都需要身份认证
-        .antMatchers().permitAll()
-        ;
-
 
         http.csrf().disable();
+
+        authorizeConfigManager.config(http.authorizeRequests());
     }
 }
