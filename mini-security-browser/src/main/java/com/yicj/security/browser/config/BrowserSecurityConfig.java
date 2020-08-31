@@ -3,6 +3,7 @@ package com.yicj.security.browser.config;
 import com.yicj.security.core.authentication.FormAuthenticationConfig;
 import com.yicj.security.core.authorize.AuthorizeConfigManager;
 import com.yicj.security.core.properties.SecurityProperties;
+import com.yicj.security.core.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,10 +42,16 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SessionInformationExpiredStrategy sessionInformationExpiredStrategy;
 
+    // 验证码相关得配置
+    @Autowired
+    private ValidateCodeSecurityConfig validateCodeSecurityConfig;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录相关配置
         formAuthenticationConfig.configure(http);
+        // 验证码相关配置
+        http.apply(validateCodeSecurityConfig) ;
 
         http.sessionManagement()
             .invalidSessionStrategy(invalidSessionStrategy)
