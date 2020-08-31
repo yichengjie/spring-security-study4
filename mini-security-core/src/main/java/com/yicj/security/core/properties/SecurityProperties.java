@@ -1,5 +1,6 @@
 package com.yicj.security.core.properties;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
+@Data
 @ConfigurationProperties(prefix = "yicj.security")
 public class SecurityProperties {
 

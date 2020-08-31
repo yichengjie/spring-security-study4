@@ -1,6 +1,7 @@
 package com.yicj.security.browser.config;
 
-import org.springframework.context.annotation.ComponentScan;
+import com.yicj.security.core.authentication.FormAuthenticationConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,13 +18,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private FormAuthenticationConfig formAuthenticationConfig ;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin() // 用表单登录来进行身份认证
-                .and()
-            .authorizeRequests() // 下面都是授权得配置
+        //表单登录相关配置
+        formAuthenticationConfig.configure(http);
+        // 授权相关配置
+        http.authorizeRequests() // 下面都是授权得配置
                 .anyRequest() // 任何请求
                 .authenticated()  // 都需要身份认证
+        .antMatchers().permitAll()
         ;
+
+
+        http.csrf().disable();
     }
 }

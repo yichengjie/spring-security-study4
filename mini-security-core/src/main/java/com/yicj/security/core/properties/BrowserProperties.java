@@ -1,5 +1,7 @@
 package com.yicj.security.core.properties;
 
+import lombok.Data;
+
 /**
  * ClassName: BrowserProperties
  * Description: TODO(描述)
@@ -9,8 +11,12 @@ package com.yicj.security.core.properties;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
+@Data
 public class BrowserProperties {
-
+    /**
+     * session管理配置项
+     */
+    private SessionProperties session = new SessionProperties();
     /**
      * 登录页面，当引发登录行为的url以html结尾时，会跳到这里配置的url上
      */

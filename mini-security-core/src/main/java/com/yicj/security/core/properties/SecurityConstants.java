@@ -25,7 +25,7 @@ public interface SecurityConstants {
     /**
      * 当请求需要身份认证时，默认跳转的url
      */
-    String DEFAULT_UNAUTHENTICATION_URL = "/authentication/require";
+    String DEFAULT_UN_AUTHENTICATION_URL = "/authentication/require";
     /**
      * 默认的用户名密码登录请求处理url
      */
