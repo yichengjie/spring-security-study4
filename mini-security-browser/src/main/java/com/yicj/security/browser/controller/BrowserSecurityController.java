@@ -47,6 +47,7 @@ public class BrowserSecurityController {
      * @return
      */
     @RequestMapping(SecurityConstants.DEFAULT_UN_AUTHENTICATION_URL)
+    //添加如下直接后页面将空白
     //@ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SavedRequest savedRequest = requestCache.getRequest(request, response);

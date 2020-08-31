@@ -1,7 +1,9 @@
 package com.yicj.security.demo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -18,7 +20,9 @@ public class IndexController {
 
     private ObjectMapper objectMapper ;
 
-    @GetMapping("/")
+    @RequestMapping("/")
+    //添加如下直接后页面将空白
+    //@ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public String index(){
 
         return "hello world" ;
