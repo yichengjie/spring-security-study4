@@ -1,8 +1,12 @@
 package com.yicj.security.core;
 
 import com.yicj.security.core.properties.SecurityProperties;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * ClassName: SecurityCoreConfig
@@ -17,4 +21,9 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(SecurityProperties.class)
 public class SecurityCoreConfig {
 
+    @Bean
+    @ConditionalOnMissingBean
+    public PasswordEncoder passwordEncoder(){
+        return NoOpPasswordEncoder.getInstance() ;
+    }
 }
