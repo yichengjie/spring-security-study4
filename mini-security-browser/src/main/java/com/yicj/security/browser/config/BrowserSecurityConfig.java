@@ -2,10 +2,14 @@ package com.yicj.security.browser.config;
 
 import com.yicj.security.core.authentication.FormAuthenticationConfig;
 import com.yicj.security.core.authorize.AuthorizeConfigManager;
+import com.yicj.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.session.InvalidSessionStrategy;
+import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 
 /**
  * ClassName: BrowserSecurityConfig
@@ -25,12 +29,36 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthorizeConfigManager authorizeConfigManager;
 
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
+
+    @Autowired
+    private InvalidSessionStrategy invalidSessionStrategy;
+
+    @Autowired
+    private SecurityProperties securityProperties ;
+
+    @Autowired
+    private SessionInformationExpiredStrategy sessionInformationExpiredStrategy;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录相关配置
         formAuthenticationConfig.configure(http);
 
-        http.csrf().disable();
+        http.sessionManagement()
+            .invalidSessionStrategy(invalidSessionStrategy)
+            .maximumSessions(securityProperties.getBrowser().getSession().getMaximumSessions())
+            .maxSessionsPreventsLogin(securityProperties.getBrowser().getSession().isMaxSessionsPreventsLogin())
+            .expiredSessionStrategy(sessionInformationExpiredStrategy) ;
+
+        http.logout()
+            .logoutUrl("/signOut")
+            .logoutSuccessHandler(logoutSuccessHandler)
+            .deleteCookies("JSESSIONID") ;
+
+        http.csrf()
+            .disable();
 
         authorizeConfigManager.config(http.authorizeRequests());
     }
