@@ -1,5 +1,6 @@
-package com.yicj.security.browser;
+package com.yicj.security.browser.config;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,7 +19,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic() // 用表单登录来进行身份认证
+        http.formLogin() // 用表单登录来进行身份认证
                 .and()
             .authorizeRequests() // 下面都是授权得配置
                 .anyRequest() // 任何请求
