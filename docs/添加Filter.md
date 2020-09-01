@@ -1,38 +1,6 @@
-package com.yicj.security.core.validate;
-
-import com.yicj.security.core.properties.SecurityConstants;
-import com.yicj.security.core.properties.SecurityProperties;
-import com.yicj.security.core.validate.code.impl.ValidateCodeProcessorHolder;
-import com.yicj.security.core.validate.exception.ValidateCodeException;
-import com.yicj.security.core.validate.model.ValidateCodeType;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.stereotype.Component;
-import org.springframework.util.AntPathMatcher;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.filter.OncePerRequestFilter;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-/**
- * 校验验证码的过滤器
- * ClassName: ValidateCodeFilter
- * Description: TODO(描述)
- * Date: 2020/8/31 15:59
- *
- * @author yicj(626659321 @ qq.com)
- * 修改记录
- * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
- */
+#### 向spring-security过滤器链中添加过滤器(以验证码为例)
+> 编写过滤器实现
+```$xslt
 @Component("validateCodeFilter")
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {
     //验证码校验失败处理器
@@ -100,3 +68,32 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
         return result;
     }
 }
+```
+> 添加验证码配置类
+```$xslt
+@Component("validateCodeSecurityConfig")
+public class ValidateCodeSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
+
+    @Autowired
+    private ValidateCodeFilter validateCodeFilter;
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.addFilterBefore(validateCodeFilter, AbstractPreAuthenticatedProcessingFilter.class);
+    }
+}
+```
+> 将配置类添加到spring-security中
+```$xslt
+    // 验证码相关得配置
+    @Autowired
+    private ValidateCodeSecurityConfig validateCodeSecurityConfig;
+    
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        //表单登录相关配置
+        formAuthenticationConfig.configure(http);
+        // 验证码相关配置
+        http.apply(validateCodeSecurityConfig) ;
+    }
+```
