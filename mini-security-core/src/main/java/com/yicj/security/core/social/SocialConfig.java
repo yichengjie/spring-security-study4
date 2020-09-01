@@ -1,5 +1,7 @@
 package com.yicj.security.core.social;
 
+import com.yicj.security.core.properties.SecurityProperties;
+import com.yicj.security.core.social.support.MiniSpringSocialConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +34,8 @@ public class SocialConfig extends SocialConfigurerAdapter {
     private DataSource dataSource;
     @Autowired(required = false)
     private ConnectionSignUp connectionSignUp;
+    @Autowired
+    private SecurityProperties securityProperties ;
 
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(
@@ -58,6 +62,8 @@ public class SocialConfig extends SocialConfigurerAdapter {
     // 添加spring-social的filter过滤器
     @Bean
     public SpringSocialConfigurer miniSocialSecurityConfigurer(){
-        return new SpringSocialConfigurer() ;
+        String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
+        SpringSocialConfigurer socialConfigurer = new MiniSpringSocialConfigurer(filterProcessesUrl);
+        return  socialConfigurer;
     }
 }
