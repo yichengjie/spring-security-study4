@@ -1,10 +1,10 @@
 package com.yicj.security.browser.validate.code.impl;
 
-import com.yicj.security.browser.session.support.HttpSessionSessionStrategy;
-import com.yicj.security.browser.session.support.SessionStrategy;
 import com.yicj.security.core.validate.model.ValidateCode;
 import com.yicj.security.core.validate.code.ValidateCodeRepository;
 import com.yicj.security.core.validate.model.ValidateCodeType;
+import org.springframework.social.connect.web.HttpSessionSessionStrategy;
+import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
