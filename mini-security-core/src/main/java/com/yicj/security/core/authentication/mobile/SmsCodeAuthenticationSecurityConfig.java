@@ -9,7 +9,11 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 /**
  * 短信登录配置
@@ -31,23 +35,31 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
     @Autowired
     private UserDetailsService userDetailsService;
 
-    //@Autowired
-    //private PersistentTokenRepository persistentTokenRepository;
+    //// 手机登录增加记住我功能
+    @Autowired
+    private PersistentTokenRepository persistentTokenRepository;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        //1. 初始化数据
         SmsCodeAuthenticationFilter smsCodeAuthenticationFilter = new SmsCodeAuthenticationFilter();
+        //>> 设置filter的authenticationManager
         smsCodeAuthenticationFilter.setAuthenticationManager(http.getSharedObject(AuthenticationManager.class));
+        //>> 设置filter的成功/错误处理器
         smsCodeAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
         smsCodeAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
-        //String key = UUID.randomUUID().toString();
-        //smsCodeAuthenticationFilter.setRememberMeServices(new PersistentTokenBasedRememberMeServices(key, userDetailsService, persistentTokenRepository));
-
+        //>> 设置filter的记住我功能
+        String key = UUID.randomUUID().toString();
+        PersistentTokenBasedRememberMeServices rememberMeServices =
+                new PersistentTokenBasedRememberMeServices(key, userDetailsService, persistentTokenRepository);
+        smsCodeAuthenticationFilter.setRememberMeServices(rememberMeServices);
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        //2. 将自定义filter和自定义provider添加到spring-security中去
+        //>> 将AuthenticationProvider添加到provider集合中去
         SmsCodeAuthenticationProvider smsCodeAuthenticationProvider = new SmsCodeAuthenticationProvider();
         smsCodeAuthenticationProvider.setUserDetailsService(userDetailsService);
-
-        // 向AuthenticationRegistry中注册AuthenticationProvider
-        http.authenticationProvider(smsCodeAuthenticationProvider)
-            .addFilterAfter(smsCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.authenticationProvider(smsCodeAuthenticationProvider) ;
+        //>> 将filter添加到过滤器链中链中
+        http.addFilterAfter(smsCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
