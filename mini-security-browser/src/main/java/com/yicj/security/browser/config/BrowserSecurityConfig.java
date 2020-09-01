@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
 
@@ -56,6 +57,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PersistentTokenRepository persistentTokenRepository ;
 
+    // 社交登录
+    @Autowired
+    private SpringSocialConfigurer miniSocialSecurityConfigurer ;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录相关配置
@@ -64,6 +69,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         http.apply(validateCodeSecurityConfig) ;
         // 手机验证码配置
         http.apply(smsCodeAuthenticationSecurityConfig) ;
+        // 社交登录
+        http.apply(miniSocialSecurityConfigurer) ;
 
         //记住我配置，如果想在'记住我'登录时记录日志，可以注册一个InteractiveAuthenticationSuccessEvent事件的监听器
 		http.rememberMe()

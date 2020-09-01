@@ -15,11 +15,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "yicj.security")
 public class SecurityProperties {
-
+    // 浏览器相关配置
     private BrowserProperties browser = new BrowserProperties() ;
-
-    /**
-     * 验证码配置
-     */
+    //验证码配置
     private ValidateCodeProperties code = new ValidateCodeProperties();
+    //社交登录配置
+    private SocialProperties social = new SocialProperties();
 }
