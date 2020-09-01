@@ -9,8 +9,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
+
+import javax.sql.DataSource;
 
 /**
  * ClassName: BrowserSecurityBeanConfig
@@ -26,6 +30,8 @@ public class BrowserSecurityBeanConfig {
 
     @Autowired
     private SecurityProperties securityProperties;
+    @Autowired
+    private DataSource dataSource;
 
     /**
      * session失效时的处理策略配置
@@ -56,5 +62,17 @@ public class BrowserSecurityBeanConfig {
     @ConditionalOnMissingBean(LogoutSuccessHandler.class)
     public LogoutSuccessHandler logoutSuccessHandler(){
         return new BrowserLogoutSuccessHandler(securityProperties.getBrowser().getSignOutUrl());
+    }
+
+    /**
+     * 记住我功能的token存取器配置
+     * @return
+     */
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        //tokenRepository.setCreateTableOnStartup(true);
+        return tokenRepository;
     }
 }

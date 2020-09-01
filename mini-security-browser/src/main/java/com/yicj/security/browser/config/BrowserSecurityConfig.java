@@ -50,10 +50,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig ;
     // rememberMe相关配置
-    @Autowired
-    private DataSource dataSource;
+
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private PersistentTokenRepository persistentTokenRepository ;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -66,7 +67,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //记住我配置，如果想在'记住我'登录时记录日志，可以注册一个InteractiveAuthenticationSuccessEvent事件的监听器
 		http.rememberMe()
-            .tokenRepository(persistentTokenRepository())
+            .tokenRepository(persistentTokenRepository)
             .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
             .userDetailsService(userDetailsService) ;
 
@@ -85,17 +86,5 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
             .disable();
 
         authorizeConfigManager.config(http.authorizeRequests());
-    }
-
-    /**
-     * 记住我功能的token存取器配置
-     * @return
-     */
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-        tokenRepository.setDataSource(dataSource);
-		//tokenRepository.setCreateTableOnStartup(true);
-        return tokenRepository;
     }
 }

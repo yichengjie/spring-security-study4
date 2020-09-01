@@ -34,7 +34,6 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
     private AuthenticationFailureHandler authenticationFailureHandler;
     @Autowired
     private UserDetailsService userDetailsService;
-
     //// 手机登录增加记住我功能
     @Autowired
     private PersistentTokenRepository persistentTokenRepository;
