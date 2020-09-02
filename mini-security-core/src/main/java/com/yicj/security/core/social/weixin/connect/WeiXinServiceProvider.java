@@ -1,7 +1,7 @@
 package com.yicj.security.core.social.weixin.connect;
 
-import com.yicj.security.core.social.weixin.api.WeiXin;
-import com.yicj.security.core.social.weixin.api.WeiXinImpl;
+import com.yicj.security.core.social.weixin.api.WeiXinApi;
+import com.yicj.security.core.social.weixin.api.WeiXinApiImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-public class WeiXinServiceProvider extends AbstractOAuth2ServiceProvider<WeiXin> {
+public class WeiXinServiceProvider extends AbstractOAuth2ServiceProvider<WeiXinApi> {
 
     /**
      * 微信获取授权码的url
@@ -30,7 +30,7 @@ public class WeiXinServiceProvider extends AbstractOAuth2ServiceProvider<WeiXin>
     }
 
     @Override
-    public WeiXin getApi(String accessToken) {
-        return new WeiXinImpl(accessToken);
+    public WeiXinApi getApi(String accessToken) {
+        return new WeiXinApiImpl(accessToken);
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-public class WeiXinImpl extends AbstractOAuth2ApiBinding implements WeiXin {
+public class WeiXinApiImpl extends AbstractOAuth2ApiBinding implements WeiXinApi {
 
     /**
      *
@@ -34,7 +34,7 @@ public class WeiXinImpl extends AbstractOAuth2ApiBinding implements WeiXin {
     /**
      * @param accessToken
      */
-    public WeiXinImpl(String accessToken) {
+    public WeiXinApiImpl(String accessToken) {
         super(accessToken, TokenStrategy.ACCESS_TOKEN_PARAMETER);
     }
 

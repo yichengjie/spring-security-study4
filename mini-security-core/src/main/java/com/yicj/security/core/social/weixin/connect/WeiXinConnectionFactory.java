@@ -1,6 +1,6 @@
 package com.yicj.security.core.social.weixin.connect;
 
-import com.yicj.security.core.social.weixin.api.WeiXin;
+import com.yicj.security.core.social.weixin.api.WeiXinApi;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionData;
@@ -19,7 +19,7 @@ import org.springframework.social.oauth2.OAuth2ServiceProvider;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-public class WeiXinConnectionFactory extends OAuth2ConnectionFactory<WeiXin> {
+public class WeiXinConnectionFactory extends OAuth2ConnectionFactory<WeiXinApi> {
 
     public WeiXinConnectionFactory(String providerId, String appId, String appSecret) {
         super(providerId, new WeiXinServiceProvider(appId, appSecret), new WeiXinAdapter());
@@ -36,21 +36,21 @@ public class WeiXinConnectionFactory extends OAuth2ConnectionFactory<WeiXin> {
         return null;
     }
 
-    public Connection<WeiXin> createConnection(AccessGrant accessGrant) {
-        return new OAuth2Connection<WeiXin>(getProviderId(), extractProviderUserId(accessGrant), accessGrant.getAccessToken(),
+    public Connection<WeiXinApi> createConnection(AccessGrant accessGrant) {
+        return new OAuth2Connection<WeiXinApi>(getProviderId(), extractProviderUserId(accessGrant), accessGrant.getAccessToken(),
                 accessGrant.getRefreshToken(), accessGrant.getExpireTime(), getOAuth2ServiceProvider(), getApiAdapter(extractProviderUserId(accessGrant)));
     }
 
 
-    public Connection<WeiXin> createConnection(ConnectionData data) {
-        return new OAuth2Connection<WeiXin>(data, getOAuth2ServiceProvider(), getApiAdapter(data.getProviderUserId()));
+    public Connection<WeiXinApi> createConnection(ConnectionData data) {
+        return new OAuth2Connection<WeiXinApi>(data, getOAuth2ServiceProvider(), getApiAdapter(data.getProviderUserId()));
     }
 
-    private ApiAdapter<WeiXin> getApiAdapter(String providerUserId) {
+    private ApiAdapter<WeiXinApi> getApiAdapter(String providerUserId) {
         return new WeiXinAdapter(providerUserId);
     }
 
-    private OAuth2ServiceProvider<WeiXin> getOAuth2ServiceProvider() {
-        return (OAuth2ServiceProvider<WeiXin>) getServiceProvider();
+    private OAuth2ServiceProvider<WeiXinApi> getOAuth2ServiceProvider() {
+        return (OAuth2ServiceProvider<WeiXinApi>) getServiceProvider();
     }
 }

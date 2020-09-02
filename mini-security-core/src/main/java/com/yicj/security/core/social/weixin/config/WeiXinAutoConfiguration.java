@@ -12,7 +12,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactory;
-import org.springframework.web.servlet.View;
 
 /**
  * 微信登录配置

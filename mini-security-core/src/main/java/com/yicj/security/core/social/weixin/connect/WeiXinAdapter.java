@@ -1,6 +1,6 @@
 package com.yicj.security.core.social.weixin.connect;
 
-import com.yicj.security.core.social.weixin.api.WeiXin;
+import com.yicj.security.core.social.weixin.api.WeiXinApi;
 import com.yicj.security.core.social.weixin.api.WeiXinUserInfo;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
@@ -15,7 +15,7 @@ import org.springframework.social.connect.UserProfile;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-public class WeiXinAdapter implements ApiAdapter<WeiXin> {
+public class WeiXinAdapter implements ApiAdapter<WeiXinApi> {
 
     private String openId;
 
@@ -30,7 +30,7 @@ public class WeiXinAdapter implements ApiAdapter<WeiXin> {
      * @return
      */
     @Override
-    public boolean test(WeiXin api) {
+    public boolean test(WeiXinApi api) {
         return true;
     }
 
@@ -39,7 +39,7 @@ public class WeiXinAdapter implements ApiAdapter<WeiXin> {
      * @param values
      */
     @Override
-    public void setConnectionValues(WeiXin api, ConnectionValues values) {
+    public void setConnectionValues(WeiXinApi api, ConnectionValues values) {
         WeiXinUserInfo profile = api.getUserInfo(openId);
         values.setProviderUserId(profile.getOpenid());
         values.setDisplayName(profile.getNickname());
@@ -51,7 +51,7 @@ public class WeiXinAdapter implements ApiAdapter<WeiXin> {
      * @return
      */
     @Override
-    public UserProfile fetchUserProfile(WeiXin api) {
+    public UserProfile fetchUserProfile(WeiXinApi api) {
         return null;
     }
 
@@ -60,7 +60,7 @@ public class WeiXinAdapter implements ApiAdapter<WeiXin> {
      * @param message
      */
     @Override
-    public void updateStatus(WeiXin api, String message) {
+    public void updateStatus(WeiXinApi api, String message) {
         //do nothing
     }
 }
