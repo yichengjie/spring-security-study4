@@ -22,7 +22,7 @@ import org.springframework.social.oauth2.OAuth2ServiceProvider;
 public class WeiXinConnectionFactory extends OAuth2ConnectionFactory<WeiXinApi> {
 
     public WeiXinConnectionFactory(String providerId, String appId, String appSecret) {
-        super(providerId, new WeiXinServiceProvider(appId, appSecret), new WeiXinAdapter());
+        super(providerId, new WeiXinServiceProvider(appId, appSecret), null);
     }
 
     /**
@@ -37,13 +37,13 @@ public class WeiXinConnectionFactory extends OAuth2ConnectionFactory<WeiXinApi> 
     }
 
     public Connection<WeiXinApi> createConnection(AccessGrant accessGrant) {
-        return new OAuth2Connection<WeiXinApi>(getProviderId(), extractProviderUserId(accessGrant), accessGrant.getAccessToken(),
+        return new OAuth2Connection<>(getProviderId(), extractProviderUserId(accessGrant), accessGrant.getAccessToken(),
                 accessGrant.getRefreshToken(), accessGrant.getExpireTime(), getOAuth2ServiceProvider(), getApiAdapter(extractProviderUserId(accessGrant)));
     }
 
 
     public Connection<WeiXinApi> createConnection(ConnectionData data) {
-        return new OAuth2Connection<WeiXinApi>(data, getOAuth2ServiceProvider(), getApiAdapter(data.getProviderUserId()));
+        return new OAuth2Connection<>(data, getOAuth2ServiceProvider(), getApiAdapter(data.getProviderUserId()));
     }
 
     private ApiAdapter<WeiXinApi> getApiAdapter(String providerUserId) {
