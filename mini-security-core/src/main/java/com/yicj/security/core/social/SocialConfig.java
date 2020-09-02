@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
@@ -30,8 +31,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableSocial
-@ConditionalOnProperty(prefix = "mini.security.social.qq", name = "app-id")
-public class SocialConfig extends SocialConfigurerAdapter {
+public class SocialConfig extends SocialConfigurerAdapter {//SocialConfigurerAdapter
     @Autowired
     private DataSource dataSource;
     @Autowired(required = false)
@@ -51,6 +51,11 @@ public class SocialConfig extends SocialConfigurerAdapter {
         return repository;
     }
 
+    @Override
+    public UserIdSource getUserIdSource() {
+        return new CurrentUserHolder();
+    }
+
     //用来处理注册流程的工具类
     @Bean
     public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
@@ -58,7 +63,6 @@ public class SocialConfig extends SocialConfigurerAdapter {
             getUsersConnectionRepository(connectionFactoryLocator)) {
         };
     }
-
 
     // 最重要的也是也是最后一步
     // 添加spring-social的filter过滤器

@@ -70,7 +70,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         // 手机验证码配置
         http.apply(smsCodeAuthenticationSecurityConfig) ;
         // 社交登录
-        applyConfig(http, miniSocialSecurityConfigurer);
+        http.apply(miniSocialSecurityConfigurer) ;
 
         //记住我配置，如果想在'记住我'登录时记录日志，可以注册一个InteractiveAuthenticationSuccessEvent事件的监听器
 		http.rememberMe()
@@ -93,13 +93,5 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
             .disable();
 
         authorizeConfigManager.config(http.authorizeRequests());
-    }
-
-
-    private void applyConfig(HttpSecurity http, SecurityConfigurerAdapter<DefaultSecurityFilterChain,
-            HttpSecurity> conf) throws Exception {
-        if (conf != null){
-            http.apply(conf) ;
-        }
     }
 }

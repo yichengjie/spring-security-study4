@@ -35,11 +35,6 @@ public class QQAutoConfig extends SocialConfigurerAdapter  {
         configurer.addConnectionFactory(createConnectionFactory());
     }
 
-    @Override
-    public UserIdSource getUserIdSource() {
-        return new CurrentUserHolder();
-    }
-
     // 创建ConnectionFactory
     protected ConnectionFactory<?> createConnectionFactory() {
         QQProperties qqConfig = securityProperties.getSocial().getQq();
