@@ -1,4 +1,3 @@
-### 整合spring-social相关配置
 ####配置公用SocialConfigurerAdapter,并使用@EnableSocial开启spring-social功能
 ```$xslt
 @EnableSocial
@@ -96,6 +95,3 @@ public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
      http.apply(miniSocialSecurityConfigurer) ;
  }
 ```
-------
-
-
