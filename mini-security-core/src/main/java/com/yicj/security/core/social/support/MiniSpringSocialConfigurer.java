@@ -1,5 +1,6 @@
 package com.yicj.security.core.social.support;
 
+import lombok.Setter;
 import org.springframework.social.security.SocialAuthenticationFilter;
 import org.springframework.social.security.SpringSocialConfigurer;
 
@@ -12,10 +13,11 @@ import org.springframework.social.security.SpringSocialConfigurer;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
+@Setter
 public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
     private String filterProcessesUrl;
     // 留给用户自定义对filter进行个性化修改
-    private SocialAuthenticationFilterPostProcessor postProcessor;
+    private SocialAuthenticationFilterPostProcessor filterPostProcessor;
 
     public MiniSpringSocialConfigurer(String filterProcessesUrl) {
         this.filterProcessesUrl = filterProcessesUrl;
@@ -27,8 +29,8 @@ public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
         SocialAuthenticationFilter filter = (SocialAuthenticationFilter) super.postProcess(object);
         filter.setFilterProcessesUrl(filterProcessesUrl);
         // 自定义修改filter
-        if (postProcessor != null) {
-            postProcessor.process(filter);
+        if (filterPostProcessor != null) {
+            filterPostProcessor.process(filter);
         }
         return (T) filter;
     }
