@@ -63,7 +63,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Bean
     public SpringSocialConfigurer miniSocialSecurityConfigurer(){
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
-        SpringSocialConfigurer socialConfigurer = new MiniSpringSocialConfigurer(filterProcessesUrl);
+        MiniSpringSocialConfigurer socialConfigurer = new MiniSpringSocialConfigurer(filterProcessesUrl);
         return  socialConfigurer;
     }
 }

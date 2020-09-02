@@ -23,8 +23,8 @@ import org.springframework.social.connect.ConnectionFactory;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Configuration
-@ConditionalOnProperty(prefix = "yicj.security.social.qq", name = "app-id")
-public class QQAutoConfig extends SocialConfigurerAdapter {
+@ConditionalOnProperty(prefix = "mini.security.social.qq", name = "app-id")
+public class QQAutoConfig extends SocialConfigurerAdapter  {
 
     @Autowired
     private SecurityProperties securityProperties;
@@ -40,6 +40,7 @@ public class QQAutoConfig extends SocialConfigurerAdapter {
         return new CurrentUserHolder();
     }
 
+    // 创建ConnectionFactory
     protected ConnectionFactory<?> createConnectionFactory() {
         QQProperties qqConfig = securityProperties.getSocial().getQq();
         return new QQConnectionFactory(qqConfig.getProviderId(), qqConfig.getAppId(), qqConfig.getAppSecret());
