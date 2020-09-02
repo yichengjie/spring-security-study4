@@ -28,11 +28,12 @@ public class UserController {
     private ProviderSignInUtils providerSignInUtils;
 
     @PostMapping("/register")
-    public void register(User user, HttpServletRequest request) {
+    public String register(User user, HttpServletRequest request) {
         //不管是注册用户还是绑定用户，都会拿到一个用户唯一标识。
         String userId = user.getUsername();
         providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
         //appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
+        return "success" ;
     }
 
     @GetMapping("/me")
