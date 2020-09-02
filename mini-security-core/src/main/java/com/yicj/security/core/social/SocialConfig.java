@@ -6,6 +6,9 @@ import com.yicj.security.core.social.support.SocialAuthenticationFilterPostProce
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.EnableSocial;
@@ -16,6 +19,8 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.security.SpringSocialConfigurer;
+import org.springframework.util.Assert;
+
 import javax.sql.DataSource;
 
 /**
@@ -53,9 +58,10 @@ public class SocialConfig extends SocialConfigurerAdapter {
         return repository;
     }
 
+    //这个不知道干啥用的，spring2.x不配置会报错，1.x不需要配置
     @Override
     public UserIdSource getUserIdSource() {
-        return new CurrentUserHolder();
+        return new SecurityContextUserIdSource();
     }
 
     //用来处理注册流程的工具类
@@ -78,5 +84,19 @@ public class SocialConfig extends SocialConfigurerAdapter {
         //设置filter的特殊处理器
         configurer.setFilterPostProcessor(filterPostProcessor);
         return  configurer;
+    }
+
+
+    // 这个不知道干啥用的，spring2.x不配置会报错，1.x不需要配置
+    private static class SecurityContextUserIdSource implements UserIdSource {
+        @Override
+        public String getUserId() {
+            SecurityContext context = SecurityContextHolder.getContext();
+            Authentication authentication = context.getAuthentication();
+            Assert.state(authentication != null,
+                    "Unable to get a " + "ConnectionRepository: no user signed in");
+            return authentication.getName();
+        }
+
     }
 }

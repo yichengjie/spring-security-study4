@@ -2,13 +2,11 @@ package com.yicj.security.core.social.qq.config;
 
 import com.yicj.security.core.properties.QQProperties;
 import com.yicj.security.core.properties.SecurityProperties;
-import com.yicj.security.core.social.CurrentUserHolder;
 import com.yicj.security.core.social.qq.connect.QQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactory;
