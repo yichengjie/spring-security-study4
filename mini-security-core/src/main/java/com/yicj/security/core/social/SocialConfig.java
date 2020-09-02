@@ -3,6 +3,7 @@ package com.yicj.security.core.social;
 import com.yicj.security.core.properties.SecurityProperties;
 import com.yicj.security.core.social.support.MiniSpringSocialConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.encrypt.Encryptors;
@@ -27,6 +28,7 @@ import javax.sql.DataSource;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
+@ConditionalOnProperty(prefix = "mini.security.social.qq", name = "app-id")
 @Configuration
 @EnableSocial
 public class SocialConfig extends SocialConfigurerAdapter {

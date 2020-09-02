@@ -8,9 +8,11 @@ import com.yicj.security.core.properties.SecurityProperties;
 import com.yicj.security.core.validate.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.InvalidSessionStrategy;
@@ -56,7 +58,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     private PersistentTokenRepository persistentTokenRepository ;
 
     // 社交登录
-    @Autowired
+    @Autowired(required = false)
     private SpringSocialConfigurer miniSocialSecurityConfigurer ;
 
     @Override
@@ -68,7 +70,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         // 手机验证码配置
         http.apply(smsCodeAuthenticationSecurityConfig) ;
         // 社交登录
-        http.apply(miniSocialSecurityConfigurer) ;
+        applyConfig(http, miniSocialSecurityConfigurer);
 
         //记住我配置，如果想在'记住我'登录时记录日志，可以注册一个InteractiveAuthenticationSuccessEvent事件的监听器
 		http.rememberMe()
@@ -91,5 +93,13 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
             .disable();
 
         authorizeConfigManager.config(http.authorizeRequests());
+    }
+
+
+    private void applyConfig(HttpSecurity http, SecurityConfigurerAdapter<DefaultSecurityFilterChain,
+            HttpSecurity> conf) throws Exception {
+        if (conf != null){
+            http.apply(conf) ;
+        }
     }
 }
