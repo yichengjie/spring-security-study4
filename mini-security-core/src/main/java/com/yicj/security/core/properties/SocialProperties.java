@@ -20,5 +20,5 @@ public class SocialProperties {
 
     private QQProperties qq = new QQProperties();
 
-    private WeixinProperties weixin = new WeixinProperties();
+    private WeiXinProperties weixin = new WeiXinProperties();
 }

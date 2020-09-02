@@ -12,7 +12,7 @@ import lombok.Data;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Data
-public class WeixinProperties {
+public class WeiXinProperties {
 
     //Application id.
     private String appId;
