@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Data
-@ConfigurationProperties(prefix = "yicj.security")
+@ConfigurationProperties(prefix = "mini.security")
 public class SecurityProperties {
 
     private BrowserProperties browser = new BrowserProperties() ;

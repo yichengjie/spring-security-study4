@@ -13,11 +13,11 @@ public interface SecurityConstants {
     /**
      * 默认登录页面
      */
-    String DEFAULT_SIGN_IN_PAGE_URL = "/yicj-signIn.html";
+    String DEFAULT_SIGN_IN_PAGE_URL = "/mini-signIn.html";
     /**
      * 默认注册页面
      */
-    String DEFAULT_SIGN_UP_PAGE_URL = "/yicj-signUp.html";
+    String DEFAULT_SIGN_UP_PAGE_URL = "/mini-signUp.html";
     /**
      * 默认的处理验证码的url前缀
      */
@@ -62,7 +62,7 @@ public interface SecurityConstants {
     /**
      * session失效默认的跳转地址
      */
-    String DEFAULT_SESSION_INVALID_URL = "/yicj-session-invalid.html";
+    String DEFAULT_SESSION_INVALID_URL = "/mini-session-invalid.html";
 
     /**
      * 默认退出登录地址
