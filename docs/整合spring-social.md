@@ -1,4 +1,4 @@
-### 整合spring-social笔记
+### 整合spring-social相关配置
 ####配置公用SocialConfigurerAdapter,并使用@EnableSocial开启spring-social功能
 ```$xslt
 @EnableSocial
@@ -27,7 +27,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     }
 }
 ```
-#### 配置QQ登录的的SocialConfigurerAdapter
+#### 配置QQ登录的的SocialConfigurerAdapter,向容器中添加QQ登录需要的ConnectionFactory
 ```$xslt
 @Configuration
 @ConditionalOnProperty(prefix = "mini.security.social.qq", name = "app-id")
@@ -96,3 +96,6 @@ public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
      http.apply(miniSocialSecurityConfigurer) ;
  }
 ```
+------
+
+
