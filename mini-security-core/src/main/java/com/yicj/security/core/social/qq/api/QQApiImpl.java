@@ -8,7 +8,7 @@ import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.oauth2.TokenStrategy;
 
 @Slf4j
-public class QQImpl extends AbstractOAuth2ApiBinding implements QQ, UserIdSource {
+public class QQApiImpl extends AbstractOAuth2ApiBinding implements QQApi, UserIdSource {
 	
 	private static final String URL_GET_OPENID = "https://graph.qq.com/oauth2.0/me?access_token=%s";
 	
@@ -20,7 +20,7 @@ public class QQImpl extends AbstractOAuth2ApiBinding implements QQ, UserIdSource
 	
 	private ObjectMapper objectMapper = new ObjectMapper();
 	
-	public QQImpl(String accessToken, String appId) {
+	public QQApiImpl(String accessToken, String appId) {
 		super(accessToken, TokenStrategy.ACCESS_TOKEN_PARAMETER);
 		this.appId = appId;
 		String url = String.format(URL_GET_OPENID, accessToken);

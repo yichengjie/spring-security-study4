@@ -1,10 +1,10 @@
 package com.yicj.security.core.social.qq.connect;
 
-import com.yicj.security.core.social.qq.api.QQ;
-import com.yicj.security.core.social.qq.api.QQImpl;
+import com.yicj.security.core.social.qq.api.QQApi;
+import com.yicj.security.core.social.qq.api.QQApiImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
-public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQ> {
+public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQApi> {
 
 	private String appId;
 
@@ -18,8 +18,8 @@ public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQ> {
 	}
 
 	@Override
-	public QQ getApi(String accessToken) {
-		return new QQImpl(accessToken, appId);
+	public QQApi getApi(String accessToken) {
+		return new QQApiImpl(accessToken, appId);
 	}
 
 }

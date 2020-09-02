@@ -9,7 +9,7 @@ package com.yicj.security.core.social.qq.api;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-public interface QQ {
+public interface QQApi {
 
     QQUserInfo getUserInfo();
 }

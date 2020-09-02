@@ -1,20 +1,20 @@
 package com.yicj.security.core.social.qq.connect;
 
-import com.yicj.security.core.social.qq.api.QQ;
+import com.yicj.security.core.social.qq.api.QQApi;
 import com.yicj.security.core.social.qq.api.QQUserInfo;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;
 
-public class QQAdapter implements ApiAdapter<QQ> {
+public class QQAdapter implements ApiAdapter<QQApi> {
 
 	@Override
-	public boolean test(QQ api) {
+	public boolean test(QQApi api) {
 		return true;
 	}
 
 	@Override
-	public void setConnectionValues(QQ api, ConnectionValues values) {
+	public void setConnectionValues(QQApi api, ConnectionValues values) {
 		QQUserInfo userInfo = api.getUserInfo();
 		values.setDisplayName(userInfo.getNickname());
 		values.setImageUrl(userInfo.getFigureurl_qq_1());
@@ -23,12 +23,12 @@ public class QQAdapter implements ApiAdapter<QQ> {
 	}
 
 	@Override
-	public UserProfile fetchUserProfile(QQ api) {
+	public UserProfile fetchUserProfile(QQApi api) {
 		return null;
 	}
 
 	@Override
-	public void updateStatus(QQ api, String message) {
+	public void updateStatus(QQApi api, String message) {
 		//do noting
 	}
 
