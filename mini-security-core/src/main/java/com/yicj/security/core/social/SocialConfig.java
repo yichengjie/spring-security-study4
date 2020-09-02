@@ -28,9 +28,9 @@ import javax.sql.DataSource;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-@ConditionalOnProperty(prefix = "mini.security.social.qq", name = "app-id")
 @Configuration
 @EnableSocial
+@ConditionalOnProperty(prefix = "mini.security.social.qq", name = "app-id")
 public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
@@ -64,6 +64,8 @@ public class SocialConfig extends SocialConfigurerAdapter {
     // 添加spring-social的filter过滤器
     @Bean
     public SpringSocialConfigurer miniSocialSecurityConfigurer(){
+        // 自定义spring-social登录的地址，SocialAuthenticationFilter中默认为‘/auth’
+        // 这里自定义为‘/qqLogin’
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
         MiniSpringSocialConfigurer socialConfigurer = new MiniSpringSocialConfigurer(filterProcessesUrl);
         return  socialConfigurer;

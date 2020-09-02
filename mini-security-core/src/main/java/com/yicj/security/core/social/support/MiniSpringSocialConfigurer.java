@@ -14,7 +14,7 @@ import org.springframework.social.security.SpringSocialConfigurer;
  */
 public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
     private String filterProcessesUrl;
-
+    // 留给用户自定义对filter进行个性化修改
     private SocialAuthenticationFilterPostProcessor postProcessor;
 
     public MiniSpringSocialConfigurer(String filterProcessesUrl) {
@@ -26,10 +26,10 @@ public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
     protected <T> T postProcess(T object) {
         SocialAuthenticationFilter filter = (SocialAuthenticationFilter) super.postProcess(object);
         filter.setFilterProcessesUrl(filterProcessesUrl);
+        // 自定义修改filter
         if (postProcessor != null) {
             postProcessor.process(filter);
         }
         return (T) filter;
     }
-
 }
