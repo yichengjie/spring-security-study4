@@ -1,8 +1,6 @@
 ### 整合spring-social笔记
-####配置并开启spring-social使用@EnableSocial，并配置SocialConfigurerAdapter,  
-> 可配置多个SocialConfigurerAdapter，通常一个通用的SocialConfigurerAdapter配置，外加多个社交登录特殊配置
+####配置公用SocialConfigurerAdapter,并使用@EnableSocial开启spring-social功能
 ```$xslt
-// 通用SocialConfigurerAdapter配置
 @EnableSocial
 @Configuration
 public class SocialConfig extends SocialConfigurerAdapter {
@@ -28,8 +26,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
         return new CurrentUserHolder();
     }
 }
-
-// qq的SocialConfigurerAdapter配置
+```
+#### 配置QQ登录的的SocialConfigurerAdapter
+```$xslt
 @Configuration
 @ConditionalOnProperty(prefix = "mini.security.social.qq", name = "app-id")
 public class QQAutoConfig extends SocialConfigurerAdapter  {
@@ -50,7 +49,7 @@ public class QQAutoConfig extends SocialConfigurerAdapter  {
     }
 }
 ```
-#### 配置配置SpringSocialConfigurer，并在spring-security中应用该配置,如果没有特殊配置
+#### 配置配置SpringSocialConfigurer，并在spring-security中应用该配置
 > 继承SpringSocialConfigurer自定义拦截地址
 ```$xslt
 public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
