@@ -25,25 +25,15 @@ import java.io.IOException;
  */
 @Slf4j
 public class AbstractSessionStrategy {
-    /**
-     * 跳转的url
-     */
+    //跳转的url
     private String destinationUrl;
-    /**
-     * 系统配置信息
-     */
+    //系统配置信息
     private SecurityProperties securityProperties;
-    /**
-     * 重定向策略
-     */
+    //重定向策略
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-    /**
-     * 跳转前是否创建新的session
-     */
+    //跳转前是否创建新的session
     private boolean createNewSession = true;
-
     private ObjectMapper objectMapper = new ObjectMapper();
-
 
     public AbstractSessionStrategy(SecurityProperties securityProperties) {
         String invalidSessionUrl = securityProperties.getBrowser().getSession().getSessionInvalidUrl();
@@ -59,13 +49,17 @@ public class AbstractSessionStrategy {
         if (createNewSession) {
             request.getSession();
         }
+        // 获取之前的页面路径
         String sourceUrl = request.getRequestURI();
         String targetUrl;
+        //如果路径是以html结尾,说明需要做页面跳转
         if (StringUtils.endsWithIgnoreCase(sourceUrl, ".html")) {
+            //如果之前地址和登录地址一样，或则和退出登录地址一样，则最终地址为原来地址
             if(StringUtils.equals(sourceUrl, securityProperties.getBrowser().getSignInPageUrl())
                     || StringUtils.equals(sourceUrl, securityProperties.getBrowser().getSignOutUrl())){
                 targetUrl = sourceUrl;
             }else{
+                //非登录/登出地址外则跳转到配置的session过期地址上
                 targetUrl = destinationUrl;
             }
             log.info("redirect url :" + targetUrl);
@@ -76,13 +70,9 @@ public class AbstractSessionStrategy {
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(objectMapper.writeValueAsString(result));
         }
-
     }
 
-    /**
-     * @param request
-     * @return
-     */
+
     protected Object buildResponseContent(HttpServletRequest request) {
         String message = "session already invalid ...";
         if (isConcurrency()) {
@@ -91,25 +81,8 @@ public class AbstractSessionStrategy {
         return new SimpleResponse(message);
     }
 
-    /**
-     * session失效是否是并发导致的
-     *
-     * @return
-     */
+    //session失效是否是并发导致的
     protected boolean isConcurrency() {
         return false;
-    }
-
-    /**
-     * Determines whether a new session should be created before redirecting (to
-     * avoid possible looping issues where the same session ID is sent with the
-     * redirected request). Alternatively, ensure that the configured URL does
-     * not pass through the {@code SessionManagementFilter}.
-     *
-     * @param createNewSession
-     *            defaults to {@code true}.
-     */
-    public void setCreateNewSession(boolean createNewSession) {
-        this.createNewSession = createNewSession;
     }
 }

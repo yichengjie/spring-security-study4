@@ -1,8 +1,8 @@
 package com.yicj.security.browser.config;
 
 import com.yicj.security.browser.logout.BrowserLogoutSuccessHandler;
-import com.yicj.security.browser.session.DefaultExpiredSessionStrategy;
-import com.yicj.security.browser.session.DefaultInvalidSessionStrategy;
+import com.yicj.security.browser.session.MiniExpiredSessionStrategy;
+import com.yicj.security.browser.session.MiniInvalidSessionStrategy;
 import com.yicj.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -40,7 +40,7 @@ public class BrowserSecurityBeanConfig {
     @Bean
     @ConditionalOnMissingBean(InvalidSessionStrategy.class)
     public InvalidSessionStrategy invalidSessionStrategy(){
-        return new DefaultInvalidSessionStrategy(securityProperties);
+        return new MiniInvalidSessionStrategy(securityProperties);
     }
 
     /**
@@ -50,7 +50,7 @@ public class BrowserSecurityBeanConfig {
     @Bean
     @ConditionalOnMissingBean(SessionInformationExpiredStrategy.class)
     public SessionInformationExpiredStrategy sessionInformationExpiredStrategy(){
-        return new DefaultExpiredSessionStrategy(securityProperties);
+        return new MiniExpiredSessionStrategy(securityProperties);
     }
 
     /**

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * ClassName: DefaultInvalidSessionStrategy
+ * ClassName: MiniInvalidSessionStrategy
  * Description: TODO(描述)
  * Date: 2020/8/31 14:40
  *
@@ -17,9 +17,9 @@ import java.io.IOException;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-public class DefaultInvalidSessionStrategy extends AbstractSessionStrategy implements InvalidSessionStrategy {
+public class MiniInvalidSessionStrategy extends AbstractSessionStrategy implements InvalidSessionStrategy {
 
-    public DefaultInvalidSessionStrategy(SecurityProperties securityProperties) {
+    public MiniInvalidSessionStrategy(SecurityProperties securityProperties) {
         super(securityProperties);
     }
 
