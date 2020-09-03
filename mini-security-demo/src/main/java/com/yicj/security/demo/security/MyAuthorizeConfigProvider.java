@@ -1,6 +1,7 @@
 package com.yicj.security.demo.security;
 
 import com.yicj.security.core.authorize.AuthorizeConfigProvider;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;
@@ -15,11 +16,13 @@ import org.springframework.stereotype.Component;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Component
+@Order
 public class MyAuthorizeConfigProvider implements AuthorizeConfigProvider {
     @Override
     public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
         config.antMatchers("/user/register")
             .permitAll() ;
-        return false;
+        config.anyRequest().access("@rbacService.hasPermission(request,authentication)") ;
+        return true;
     }
 }
