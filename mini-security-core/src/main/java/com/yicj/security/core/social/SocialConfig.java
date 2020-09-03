@@ -14,9 +14,11 @@ import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
+import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.security.SpringSocialConfigurer;
 import org.springframework.util.Assert;
@@ -87,6 +89,14 @@ public class SocialConfig extends SocialConfigurerAdapter {
     }
 
 
+    @Bean
+    public ConnectController connectController(
+            ConnectionFactoryLocator factoryLocator, ConnectionRepository repository){
+        ConnectController connectController = new ConnectController(factoryLocator, repository) ;
+        return connectController ;
+    }
+
+
     // 这个不知道干啥用的，spring2.x不配置会报错，1.x不需要配置
     private static class SecurityContextUserIdSource implements UserIdSource {
         @Override
@@ -97,6 +107,5 @@ public class SocialConfig extends SocialConfigurerAdapter {
                     "Unable to get a " + "ConnectionRepository: no user signed in");
             return authentication.getName();
         }
-
     }
 }
