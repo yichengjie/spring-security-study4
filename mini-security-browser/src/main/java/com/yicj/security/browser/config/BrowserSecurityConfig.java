@@ -72,6 +72,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         // 社交登录
         http.apply(miniSocialSecurityConfigurer) ;
 
+        // 收集并配置权限
+        authorizeConfigManager.config(http.authorizeRequests());
+
         //记住我配置，如果想在'记住我'登录时记录日志，可以注册一个InteractiveAuthenticationSuccessEvent事件的监听器
 		http.rememberMe()
             .tokenRepository(persistentTokenRepository)
@@ -91,7 +94,5 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf()
             .disable();
-
-        authorizeConfigManager.config(http.authorizeRequests());
     }
 }

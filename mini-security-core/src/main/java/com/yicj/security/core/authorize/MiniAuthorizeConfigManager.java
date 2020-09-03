@@ -17,7 +17,7 @@ import java.util.List;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Component
-public class DefaultAuthorizeConfigManager implements AuthorizeConfigManager {
+public class MiniAuthorizeConfigManager implements AuthorizeConfigManager {
 
     @Autowired
     private List<AuthorizeConfigProvider> authorizeConfigProviders;

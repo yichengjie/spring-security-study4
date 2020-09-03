@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Order(Integer.MIN_VALUE)
-public class DefaultAuthorizeConfigProvider implements AuthorizeConfigProvider {
+public class MiniAuthorizeConfigProvider implements AuthorizeConfigProvider {
     @Autowired
     private SecurityProperties securityProperties;
 
