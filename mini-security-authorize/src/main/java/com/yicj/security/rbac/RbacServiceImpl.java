@@ -21,7 +21,8 @@ public class RbacServiceImpl implements RbacService{
             String username = ((UserDetails) principal).getUsername();
             // 获取用户所拥有权限的所有url
             Set<String> urls = new HashSet<>() ;
-
+            urls.add("/user/me") ;
+            urls.add("/hello") ;
             for (String url: urls){
                 if (pathMatcher.match(url, request.getRequestURI())){
                     hasPermission = true ;

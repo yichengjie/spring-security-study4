@@ -1,4 +1,4 @@
-package com.yicj.security.demo.security;
+package com.yicj.security.rbac.authorize;
 
 import com.yicj.security.core.authorize.AuthorizeConfigProvider;
 import org.springframework.core.annotation.Order;
@@ -6,22 +6,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;
 
-/**
- * ClassName: MyAuthorizeConifgProvider
- * Description: TODO(描述)
- * Date: 2020/9/2 15:50
- *
- * @author yicj(626659321 @ qq.com)
- * 修改记录
- * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
- */
-@Component
+
 @Order
-public class MyAuthorizeConfigProvider implements AuthorizeConfigProvider {
+@Component
+public class RbacAuthorizeConfigProvider implements AuthorizeConfigProvider {
     @Override
     public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
-        config.antMatchers("/user/register")
-            .permitAll() ;
+        // 这里anyRequest应该最后执行所以order为Integer.MAX_VALUE, 而且整个项目应该只有一个anyRequest，
+        // 否则前面的会被后面的覆盖, 所以这里返回true
         config.anyRequest().access("@rbacService.hasPermission(request,authentication)") ;
         return true;
     }
