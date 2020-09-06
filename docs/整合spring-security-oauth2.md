@@ -25,6 +25,12 @@ public class MiniAuthorizationServerConfig extends AuthorizationServerConfigurer
                 .refreshTokenValiditySeconds(2592000)
                 .scopes("all");
     }
+    
+    // 如果想使用密码模式必须得配置这里
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        endpoints.authenticationManager(authenticationManager);
+    }
 }
 ```
 3. 编写spring-security的配置类，不然访问是会报错提示
@@ -36,6 +42,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic()
                 .and()
             .csrf().disable();
+    }
+    
+    // 密码模式时使用AuthenticationManager
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        AuthenticationManager manager = super.authenticationManagerBean();
+        return manager;
     }
 }
 ```
