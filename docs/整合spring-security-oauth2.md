@@ -1,4 +1,4 @@
-### springboot整合oauth2
+### 整合oauth2
 1. 添加maven依赖
 ```$xslt
 <dependency>
@@ -7,7 +7,50 @@
     <version>2.1.16.RELEASE</version>
 </dependency>
 ```
-2. 编写授权服务器配置类
+2. 编写UserDetailService的实现类，且角色必须包含ROLE_USER,否则无法访问
+```$xslt
+@Component
+public class MyUserDetailsService implements UserDetailsService {
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("登录用户名{}",username);
+        //根据用户名查找用户信息
+        return buildUser(username);
+    }
+    private User buildUser(String userId) {
+        // 根据用户名查找用户信息
+        //根据查找到的用户信息判断用户是否被冻结
+        String roles = "ROLE_USER" ;
+        if ("admin".equals(userId)){
+            roles = "ROLE_USER,ROLE_ADMIN" ;
+        }
+        return new User(userId, "123",
+                true, true, true, true,
+                AuthorityUtils.commaSeparatedStringToAuthorityList(roles));
+    }
+}
+```
+3. 编写spring-security的配置类，不然访问是会报错提示
+```$xslt
+@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.httpBasic()
+                .and()
+            .csrf().disable();
+    }
+    
+    // 密码模式时使用AuthenticationManager
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        AuthenticationManager manager = super.authenticationManagerBean();
+        return manager;
+    }
+}
+```
+4. 编写授权服务器配置类
 ```$xslt
 @Configuration
 @EnableAuthorizationServer
@@ -33,46 +76,12 @@ public class MiniAuthorizationServerConfig extends AuthorizationServerConfigurer
     }
 }
 ```
-3. 编写spring-security的配置类，不然访问是会报错提示
+5. 资源服务器配置
 ```$xslt
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
-                .and()
-            .csrf().disable();
-    }
-    
-    // 密码模式时使用AuthenticationManager
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        AuthenticationManager manager = super.authenticationManagerBean();
-        return manager;
-    }
+@EnableResourceServer
+public class MiniResourceServerConfig extends ResourceServerConfigurerAdapter {
+
 }
 ```
-4. 编写UserDetailService的实现类，且角色必须包含ROLE_USER,否则无法访问
-```$xslt
-@Component
-public class MyUserDetailsService implements UserDetailsService {
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("登录用户名{}",username);
-        //根据用户名查找用户信息
-        return buildUser(username);
-    }
-    private User buildUser(String userId) {
-        // 根据用户名查找用户信息
-        //根据查找到的用户信息判断用户是否被冻结
-        String roles = "ROLE_USER" ;
-        if ("admin".equals(userId)){
-            roles = "ROLE_USER,ROLE_ADMIN" ;
-        }
-        return new User(userId, "123",
-                true, true, true, true,
-                AuthorityUtils.commaSeparatedStringToAuthorityList(roles));
-    }
-}
-```
+
