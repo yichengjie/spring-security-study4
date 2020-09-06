@@ -37,6 +37,6 @@ public class AuthenticationBeanConfig {
     @Bean
     @ConditionalOnMissingBean(UserDetailsService.class)
     public UserDetailsService userDetailsService() {
-        return new DefaultUserDetailsService();
+        return new MiniUserDetailsService();
     }
 }
