@@ -8,7 +8,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 
 
 @Component
-public class SessionValidateCodeRepository implements ValidateCodeRepository {
+public class RedisValidateCodeRepository implements ValidateCodeRepository {
     @Override
     public void save(ServletWebRequest request, ValidateCode code, ValidateCodeType validateCodeType) {
 
