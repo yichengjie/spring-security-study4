@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 /**
- * ClassName: DefaultExpiredSessionStrategy
+ * ClassName: MiniExpiredSessionStrategy
  * Description: TODO(描述)
  * Date: 2020/8/31 14:38
  *
@@ -15,8 +15,8 @@ import java.io.IOException;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-public class DefaultExpiredSessionStrategy extends AbstractSessionStrategy implements SessionInformationExpiredStrategy {
-    public DefaultExpiredSessionStrategy(SecurityProperties securityProperties) {
+public class MiniExpiredSessionStrategy extends AbstractSessionStrategy implements SessionInformationExpiredStrategy {
+    public MiniExpiredSessionStrategy(SecurityProperties securityProperties) {
         super(securityProperties);
     }
 
