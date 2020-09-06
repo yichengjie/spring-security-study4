@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
-    private ObjectMapper objectMapper ;
-
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     //添加如下直接后页面将空白
     //@ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public String index(){

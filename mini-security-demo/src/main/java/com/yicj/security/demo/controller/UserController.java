@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName: UserController
- * Description: TODO(æè¿°)
+ * Description: TODO(ÃèÊö)
  * Date: 2020/9/2 15:45
  *
  * @author yicj(626659321 @ qq.com)
- * ä¿®æ”¹è®°å½•
- * @version äº§å“ç‰ˆæœ¬ä¿¡æ¯ yyyy-mm-dd å§“å(é‚®ç®±) ä¿®æ”¹ä¿¡æ¯
+ * ĞŞ¸Ä¼ÇÂ¼
+ * @version ²úÆ·°æ±¾ĞÅÏ¢ yyyy-mm-dd ĞÕÃû(ÓÊÏä) ĞŞ¸ÄĞÅÏ¢
  */
 @RestController
 @RequestMapping("/user")
@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(User user, HttpServletRequest request) {
-        //ä¸ç®¡æ˜¯æ³¨å†Œç”¨æˆ·è¿˜æ˜¯ç»‘å®šç”¨æˆ·ï¼Œéƒ½ä¼šæ‹¿åˆ°ä¸€ä¸ªç”¨æˆ·å”¯ä¸€æ ‡è¯†ã€‚
+        //²»¹ÜÊÇ×¢²áÓÃ»§»¹ÊÇ°ó¶¨ÓÃ»§£¬¶¼»áÄÃµ½Ò»¸öÓÃ»§Î¨Ò»±êÊ¶¡£
         String userId = user.getUsername();
         providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
         //appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
