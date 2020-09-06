@@ -34,11 +34,11 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.yicj.study</groupId>
             <artifactId>mini-security-authorize</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>
