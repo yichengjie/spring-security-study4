@@ -12,9 +12,15 @@
     <artifactId>mini-security-demo</artifactId>
 
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>com.yicj.study</groupId>
             <artifactId>mini-security-browser</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.yicj.study</groupId>
+            <artifactId>mini-security-app</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -34,11 +40,11 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.yicj.study</groupId>
             <artifactId>mini-security-authorize</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>

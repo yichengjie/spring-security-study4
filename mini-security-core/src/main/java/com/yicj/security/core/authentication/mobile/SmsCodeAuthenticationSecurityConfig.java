@@ -35,7 +35,7 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
     @Autowired
     private UserDetailsService userDetailsService;
     //// 手机登录增加记住我功能
-    @Autowired
+    @Autowired(required = false)
     private PersistentTokenRepository persistentTokenRepository;
 
     @Override
@@ -48,10 +48,12 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
         smsCodeAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
         smsCodeAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
         //>> 设置filter的记住我功能
-        String key = UUID.randomUUID().toString();
-        PersistentTokenBasedRememberMeServices rememberMeServices =
-                new PersistentTokenBasedRememberMeServices(key, userDetailsService, persistentTokenRepository);
-        smsCodeAuthenticationFilter.setRememberMeServices(rememberMeServices);
+        if (persistentTokenRepository != null){
+            String key = UUID.randomUUID().toString();
+            PersistentTokenBasedRememberMeServices rememberMeServices =
+                    new PersistentTokenBasedRememberMeServices(key, userDetailsService, persistentTokenRepository);
+            smsCodeAuthenticationFilter.setRememberMeServices(rememberMeServices);
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         //2. 将自定义filter和自定义provider添加到spring-security中去
         //>> 将AuthenticationProvider添加到provider集合中去
