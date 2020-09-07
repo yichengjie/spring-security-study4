@@ -36,6 +36,7 @@ public class WeiXinConnectionFactory extends OAuth2ConnectionFactory<WeiXinApi> 
         return null;
     }
 
+    @Override
     public Connection<WeiXinApi> createConnection(AccessGrant accessGrant) {
         return new OAuth2Connection<>(getProviderId(), extractProviderUserId(accessGrant), accessGrant.getAccessToken(),
                 accessGrant.getRefreshToken(), accessGrant.getExpireTime(), getOAuth2ServiceProvider(), getApiAdapter(extractProviderUserId(accessGrant)));
