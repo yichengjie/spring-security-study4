@@ -84,4 +84,8 @@ public class MiniResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 }
 ```
+6. 获取授权码
+```$xslt
+http://www.pinzhi365.com:8080/oauth/authorize?response_type=code&client_id=mini&redirect_uri=http://www.baidu.com&scope=all
+```
 
