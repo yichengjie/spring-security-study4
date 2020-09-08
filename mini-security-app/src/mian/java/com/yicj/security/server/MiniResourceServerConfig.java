@@ -1,4 +1,4 @@
-package com.yicj.security.app.server;
+package com.yicj.security.server;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;

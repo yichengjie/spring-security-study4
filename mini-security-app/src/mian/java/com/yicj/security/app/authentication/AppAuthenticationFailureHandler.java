@@ -1,4 +1,4 @@
-package com.yicj.security.app.client.authentication;
+package com.yicj.security.app.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yicj.security.core.properties.LoginResponseType;
