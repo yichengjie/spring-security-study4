@@ -34,7 +34,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         //表单登录相关配置
         formAuthenticationConfig.configure(http);
         // 验证码相关配置
-        //http.apply(validateCodeSecurityConfig) ;
+        http.apply(validateCodeSecurityConfig) ;
         // 手机验证码配置
         http.apply(smsCodeAuthenticationSecurityConfig) ;
         // csrf关闭
