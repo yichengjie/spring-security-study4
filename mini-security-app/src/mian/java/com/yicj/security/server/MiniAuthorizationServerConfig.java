@@ -1,4 +1,4 @@
-package com.yicj.security.app.server;
+package com.yicj.security.server;
 
 import com.yicj.security.core.properties.OAuth2ClientProperties;
 import com.yicj.security.core.properties.SecurityProperties;

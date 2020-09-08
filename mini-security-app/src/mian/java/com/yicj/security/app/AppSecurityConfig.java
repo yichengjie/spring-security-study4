@@ -1,4 +1,4 @@
-package com.yicj.security.app.client;
+package com.yicj.security.app;
 
 import com.yicj.security.core.authentication.FormAuthenticationConfig;
 import com.yicj.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;

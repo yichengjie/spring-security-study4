@@ -1,4 +1,4 @@
-package com.yicj.security.app.client.validate.code.impl;
+package com.yicj.security.app.validate.code.impl;
 
 import com.yicj.security.core.validate.code.ValidateCodeRepository;
 import com.yicj.security.core.validate.exception.ValidateCodeException;
