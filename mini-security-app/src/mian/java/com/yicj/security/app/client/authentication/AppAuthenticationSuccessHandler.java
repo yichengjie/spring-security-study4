@@ -20,6 +20,7 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +42,7 @@ public class AppAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
     private ObjectMapper objectMapper;
     @Autowired
     private ClientDetailsService clientDetailsService;
-    @Autowired
+    @Resource
     private AuthorizationServerTokenServices authorizationServerTokenServices;
 
     @Override
