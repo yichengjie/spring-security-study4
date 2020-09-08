@@ -1,5 +1,6 @@
 package com.yicj.security.app;
 
+import com.yicj.security.app.authentication.openid.OpenIdAuthenticationSecurityConfig;
 import com.yicj.security.core.authentication.FormAuthenticationConfig;
 import com.yicj.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.yicj.security.core.authorize.AuthorizeConfigManager;
@@ -27,6 +28,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig ;
+    @Autowired
+    private OpenIdAuthenticationSecurityConfig openIdAuthenticationSecurityConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,6 +40,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.apply(validateCodeSecurityConfig) ;
         // 手机验证码配置
         http.apply(smsCodeAuthenticationSecurityConfig) ;
+        // open id 登录配置
+        http.apply(openIdAuthenticationSecurityConfig) ;
         // csrf关闭
         http.csrf().disable();
         // authorizeRequests自定义配置

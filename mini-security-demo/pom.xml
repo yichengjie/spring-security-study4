@@ -12,17 +12,17 @@
     <artifactId>mini-security-demo</artifactId>
 
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>com.yicj.study</groupId>
             <artifactId>mini-security-browser</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
-        <!--<dependency>
+        <dependency>
             <groupId>com.yicj.study</groupId>
             <artifactId>mini-security-app</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
