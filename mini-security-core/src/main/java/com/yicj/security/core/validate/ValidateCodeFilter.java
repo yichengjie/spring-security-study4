@@ -5,6 +5,7 @@ import com.yicj.security.core.properties.SecurityProperties;
 import com.yicj.security.core.validate.code.impl.ValidateCodeProcessorHolder;
 import com.yicj.security.core.validate.exception.ValidateCodeException;
 import com.yicj.security.core.validate.model.ValidateCodeType;
+import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +34,17 @@ import java.util.Set;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-@Component("validateCodeFilter")
+@Data
+//@Component("validateCodeFilter")
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {
     //验证码校验失败处理器
-    @Autowired
+    //@Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
     //系统配置信息
-    @Autowired
+    //@Autowired
     private SecurityProperties securityProperties;
     //系统中的校验码处理器
-    @Autowired
+    //@Autowired
     private ValidateCodeProcessorHolder validateCodeProcessorHolder;
     //存放所有需要校验验证码的url
     private Map<String, ValidateCodeType> urlMap = new HashMap<>();
