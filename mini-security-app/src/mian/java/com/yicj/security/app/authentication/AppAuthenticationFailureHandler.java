@@ -26,7 +26,7 @@ import java.io.IOException;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Slf4j
-@Component("appAuthenticationFailureHandler")
+@Component("miniAuthenticationFailureHandler")
 public class AppAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Autowired
