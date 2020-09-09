@@ -75,7 +75,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     }
     // 最重要的也是也是最后一步
     // 添加spring-social的filter过滤器
-    @Bean
+    @Bean("miniSocialSecurityConfigurer")
     public SpringSocialConfigurer miniSocialSecurityConfigurer(@Autowired(required = false) SocialAuthenticationFilterPostProcessor filterPostProcessor){
         // 自定义spring-social登录的地址，SocialAuthenticationFilter中默认为‘/auth’
         // 这里自定义为‘/qqLogin’

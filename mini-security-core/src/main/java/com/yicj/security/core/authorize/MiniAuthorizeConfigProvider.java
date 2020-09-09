@@ -31,10 +31,11 @@ public class MiniAuthorizeConfigProvider implements AuthorizeConfigProvider {
             SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE,
             SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_OPENID,
             SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-            securityProperties.getBrowser().getSignInPageUrl(),
-            securityProperties.getBrowser().getSignUpPageUrl(),
+            securityProperties.getBrowser().getSignInPageUrl(), // 登录页面UI
+            securityProperties.getBrowser().getSignUpPageUrl(), // 注册页面UI
             securityProperties.getBrowser().getSession().getSessionInvalidUrl(),
-            "/error"
+            "/error",
+            SecurityConstants.DEFAULT_SOCIAL_USER_INFO_URL // app中social注册
         ).permitAll();
 
         if (StringUtils.isNotBlank(securityProperties.getBrowser().getSignOutUrl())) {
