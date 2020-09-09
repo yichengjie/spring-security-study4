@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 // spring-security的主配置类
 @Slf4j
@@ -31,6 +32,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private OpenIdAuthenticationSecurityConfig openIdAuthenticationSecurityConfig;
 
+    @Autowired
+    private SpringSocialConfigurer miniSocialSecurityConfigurer;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         log.info("SecurityConfiguration 中配置HttpSecurity对象执行");
@@ -40,6 +44,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.apply(validateCodeSecurityConfig) ;
         // 手机验证码配置
         http.apply(smsCodeAuthenticationSecurityConfig) ;
+        // 社交登录配置
+        http.apply(miniSocialSecurityConfigurer) ;
         // open id 登录配置
         http.apply(openIdAuthenticationSecurityConfig) ;
         // csrf关闭
