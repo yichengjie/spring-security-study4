@@ -25,6 +25,7 @@
         <module>mini-security-app</module>
         <module>mini-security-browser</module>
         <module>mini-security-demo</module>
+        <module>mini-security-demo-browser</module>
         <module>mini-security-authorize</module>
     </modules>
     <packaging>pom</packaging>
