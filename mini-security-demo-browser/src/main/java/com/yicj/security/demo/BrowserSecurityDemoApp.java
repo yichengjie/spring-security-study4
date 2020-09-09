@@ -13,10 +13,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @SpringBootApplication
-public class SecurityDemoApp {
+public class BrowserSecurityDemoApp {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(SecurityDemoApp.class, args) ;
+        SpringApplication.run(BrowserSecurityDemoApp.class, args) ;
     }
 }

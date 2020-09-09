@@ -18,7 +18,7 @@ public class QQOAuth2TemplateTest {
 
     @Test
     public void exchangeForAccess(){
-        String authorizationCode ="455B4F844367C9F4ACD2A8FF83AF0D43" ;
+        String authorizationCode ="AC211C598935B7CB3C41C443BB8C8A71" ;
         String returnToUrl = "http://www.pinzhi365.com/qqLogin/callback.do" ;
         AccessGrant accessGrant = auth2Template.exchangeForAccess(authorizationCode, returnToUrl, null);
         System.out.println(accessGrant);
