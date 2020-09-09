@@ -44,9 +44,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     private ConnectionSignUp connectionSignUp;
     @Autowired
     private SecurityProperties securityProperties ;
-    // filter的特殊处理器
-    @Autowired(required = false)
-    private SocialAuthenticationFilterPostProcessor filterPostProcessor;
+    // filter的特殊处理器，写这里在@Bean中使用时可能为null
+    //@Autowired(required = false)
+    //private SocialAuthenticationFilterPostProcessor filterPostProcessor;
 
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(
@@ -76,7 +76,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     // 最重要的也是也是最后一步
     // 添加spring-social的filter过滤器
     @Bean
-    public SpringSocialConfigurer miniSocialSecurityConfigurer(){
+    public SpringSocialConfigurer miniSocialSecurityConfigurer(@Autowired(required = false) SocialAuthenticationFilterPostProcessor filterPostProcessor){
         // 自定义spring-social登录的地址，SocialAuthenticationFilter中默认为‘/auth’
         // 这里自定义为‘/qqLogin’
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();

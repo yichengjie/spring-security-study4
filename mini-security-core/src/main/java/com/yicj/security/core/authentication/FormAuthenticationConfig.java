@@ -2,6 +2,7 @@ package com.yicj.security.core.authentication;
 
 import com.yicj.security.core.properties.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -19,8 +20,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class FormAuthenticationConfig {
     @Autowired
+    @Qualifier("miniAuthenticationSuccessHandler")
     protected AuthenticationSuccessHandler miniAuthenticationSuccessHandler;
     @Autowired
+    @Qualifier("miniAuthenticationFailureHandler")
     protected AuthenticationFailureHandler miniAuthenticationFailureHandler;
 
     public void configure(HttpSecurity http) throws Exception {

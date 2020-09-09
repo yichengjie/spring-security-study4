@@ -1,4 +1,4 @@
-package com.yicj.security.app;
+package com.yicj.security;
 
 import org.springframework.context.annotation.ComponentScan;
 

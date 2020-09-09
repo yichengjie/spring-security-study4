@@ -13,7 +13,6 @@ import org.springframework.social.security.SpringSocialConfigurer;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-@Setter
 public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
     private String filterProcessesUrl;
     // 留给用户自定义对filter进行个性化修改
@@ -33,5 +32,19 @@ public class MiniSpringSocialConfigurer extends SpringSocialConfigurer {
             filterPostProcessor.process(filter);
         }
         return (T) filter;
+    }
+
+
+    public String getFilterProcessesUrl() {
+        return filterProcessesUrl;
+    }
+    public void setFilterProcessesUrl(String filterProcessesUrl) {
+        this.filterProcessesUrl = filterProcessesUrl;
+    }
+    public SocialAuthenticationFilterPostProcessor getFilterPostProcessor() {
+        return filterPostProcessor;
+    }
+    public void setFilterPostProcessor(SocialAuthenticationFilterPostProcessor filterPostProcessor) {
+        this.filterPostProcessor = filterPostProcessor;
     }
 }

@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.yicj.security.app.AppSecurityAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.yicj.security.AppSecurityAutoConfiguration
