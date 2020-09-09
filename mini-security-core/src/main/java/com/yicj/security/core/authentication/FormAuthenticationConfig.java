@@ -19,15 +19,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class FormAuthenticationConfig {
     @Autowired
-    protected AuthenticationSuccessHandler browserAuthenticationSuccessHandler;
+    protected AuthenticationSuccessHandler miniAuthenticationSuccessHandler;
     @Autowired
-    protected AuthenticationFailureHandler browserAuthenticationFailureHandler;
+    protected AuthenticationFailureHandler miniAuthenticationFailureHandler;
 
     public void configure(HttpSecurity http) throws Exception {
         http.formLogin()
             .loginPage(SecurityConstants.DEFAULT_UN_AUTHENTICATION_URL)
             .loginProcessingUrl(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)
-            .successHandler(browserAuthenticationSuccessHandler)
-            .failureHandler(browserAuthenticationFailureHandler);
+            .successHandler(miniAuthenticationSuccessHandler)
+            .failureHandler(miniAuthenticationFailureHandler);
     }
 }
