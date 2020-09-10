@@ -14,12 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SsoSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsService ssoUserDetailsService;
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(ssoUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
