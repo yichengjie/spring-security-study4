@@ -22,11 +22,13 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
         clients.inMemory()
                 .withClient("mini1")
                 .secret("miniSecret1")
+                .redirectUris("http://localhost:8080/client1/login")
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("all")
                 .and()
                 .withClient("mini2")
                 .secret("miniSecret2")
+                .redirectUris("http://localhost:8060/client2/login")
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("all");
     }
@@ -52,10 +54,5 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey("mini");
         return converter;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance() ;
     }
 }
