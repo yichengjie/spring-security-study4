@@ -27,6 +27,7 @@
         <module>mini-security-demo</module>
         <module>mini-security-demo-browser</module>
         <!--<module>mini-security-authorize</module>-->
+        <module>sso-study</module>
     </modules>
     <packaging>pom</packaging>
     <dependencyManagement>
@@ -73,6 +74,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>-->
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>1.1.0.RELEASE</version>
+            </dependency>
 
             <!--<dependency>
                <groupId>org.springframework.security</groupId>
